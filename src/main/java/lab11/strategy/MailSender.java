@@ -11,14 +11,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Properties;
 import lab11.strategy.Client;
+import lombok.Data;
+@Data
 public class MailSender {
-    private final MailjetClient client;
+        private final MailjetClient client;
 
-    public MailSender(MailjetClient client) {
+        public MailSender(MailjetClient client) {
         this.client = client;
-    }
+        }
 
-    public void send(Client user, MailInfo mailInfo) throws MailjetException, MailjetSocketTimeoutException {
+        public void send(Client user, MailInfo mailInfo) throws MailjetException, MailjetSocketTimeoutException{
         MailjetRequest request = new MailjetRequest(Emailv31.resource)
                 .property(Emailv31.MESSAGES, new JSONArray()
                         .put(new JSONObject()
@@ -38,5 +40,5 @@ public class MailSender {
 
         System.out.println(response.getStatus());
         System.out.println(response.getData());
-    }
+        }
 }
